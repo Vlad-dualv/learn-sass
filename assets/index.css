@@ -149,7 +149,7 @@ meter {
           box-sizing: border-box;
 }
 
-.badge {
+.badge-active, .badge-ended, .badge-completed {
   min-width: 96px;
   padding: 4px 8px;
   color: #fff;
@@ -161,6 +161,7 @@ meter {
   letter-spacing: 0.07px;
   border-radius: 20px;
   background-color: #92929d;
+  margin-right: 10px;
 }
 
 .badge-completed {
@@ -168,9 +169,9 @@ meter {
 }
 
 .badge-ended {
-  background-color: salmon;
+  background-color: #f44336;
 }
 
 .badge-active {
-  background-color: lightgreen;
+  background-color: #4caf50;
 }
