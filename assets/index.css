@@ -154,3 +154,13 @@ meter {
   color: black;
   background-color: lightblue;
 }
+
+.section {
+  width: 100%;
+}
+.section .title {
+  color: teal;
+}
+.section .text {
+  font-size: 14px;
+}
