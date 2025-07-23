@@ -1,10 +1,29 @@
-@use "sass:math";
+@use "sass:list";
 
-@function strip-unit($value) {
-  @if type-of($value) == "number" and not unitless($value) {
-    @return math.div($value, ($value * 0 + 1));
+$numbers: 10px, 12px, 16px;
+@debug list.nth($numbers, 2);
+
+$colors: lightgreen, tomato, lightblue;
+@debug list.length($colors);
+
+$sizes: 40px, 50px, 80px;
+
+@each $size in $sizes {
+  .icon-#{$size} {
+    font-size: $size;
+    height: $size;
+    width: $size;
   }
-  @return $value;
 }
 
-@debug strip-unit(24px);
+$button-types: ".btn-sm", ".btn-md", ".btn-lg", ".btn-xl";
+
+@mixin btn-size($types) {
+  @for $i from 1 through list.length($types) {
+    #{list.nth($types, $i)} {
+      $factor: ($i * 5 - 5);
+    }
+  }
+}
+
+@include btn-size($button-types);
