@@ -1,74 +1,10 @@
-/*
-@mixin avatar($size, $circle: false) {
-  width: $size;
-  height: $size;
+@use "sass:math";
 
-  @if $circle {
-    border-radius: 50%;
+@function strip-unit($value) {
+  @if type-of($value) == "number" and not unitless($value) {
+    @return math.div($value, ($value * 0 + 1));
   }
+  @return $value;
 }
 
-.square-avatar {
-  @include avatar(100px, $circle: false);
-}
-
-.circle-avatar {
-  @include avatar(100px, $circle: true);
-}
-
-@mixin fonts($fs, $fw: null, $lh: null, $ls: null, $align: null) {
-  font-size: $fs;
-  font-weight: $fw;
-
-  @if $lh == normal {
-    line-height: normal;
-  } @else if math.unit($lh) == "px" {
-    line-height: calc($lh / $fs);
-  } @else {
-    @error "Invalid line-height unit. Use 'normal' or a pixel value.";
-  }
-
-  line-height: $lh;
-  letter-spacing: $ls;
-  text-align: $align;
-}
-
-.title {
-  @include fonts(20px, $fw: 600, $lh: 28px, $ls: 0.5px, $align: center);
-}
-  */
-
-$sizes: 8, 16, 20;
-
-@each $size in $sizes {
-  .p-#{$size} {
-    padding: #{$size}px;
-  }
-}
-
-$spacers: (
-  "sm": 24,
-  "md": 32,
-  "lg": 36,
-  "xl": 68,
-);
-
-@each $key, $value in $spacers {
-  .margin-#{$key} {
-    margin: #{$value}px;
-  }
-}
-
-$base-weight: 400;
-
-@for $i from 0 through 3 {
-  .fw-#{$base-weight+($i + 100)} {
-    font-weight: $base-weight + ($i * 100);
-  }
-}
-
-$n: 0;
-
-@while $n < 4 {
-  $n: $n + 1;
-}
+@debug strip-unit(24px);
