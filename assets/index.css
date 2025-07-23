@@ -149,29 +149,85 @@ meter {
           box-sizing: border-box;
 }
 
-.badge-active, .badge-ended, .badge-completed {
-  min-width: 96px;
-  padding: 4px 8px;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  font-style: normal;
+/*
+@mixin avatar($size, $circle: false) {
+  width: $size;
+  height: $size;
+
+  @if $circle {
+    border-radius: 50%;
+  }
+}
+
+.square-avatar {
+  @include avatar(100px, $circle: false);
+}
+
+.circle-avatar {
+  @include avatar(100px, $circle: true);
+}
+
+@mixin fonts($fs, $fw: null, $lh: null, $ls: null, $align: null) {
+  font-size: $fs;
+  font-weight: $fw;
+
+  @if $lh == normal {
+    line-height: normal;
+  } @else if math.unit($lh) == "px" {
+    line-height: calc($lh / $fs);
+  } @else {
+    @error "Invalid line-height unit. Use 'normal' or a pixel value.";
+  }
+
+  line-height: $lh;
+  letter-spacing: $ls;
+  text-align: $align;
+}
+
+.title {
+  @include fonts(20px, $fw: 600, $lh: 28px, $ls: 0.5px, $align: center);
+}
+  */
+.p-8 {
+  padding: 8px;
+}
+
+.p-16 {
+  padding: 16px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.margin-sm {
+  margin: 24px;
+}
+
+.margin-md {
+  margin: 32px;
+}
+
+.margin-lg {
+  margin: 36px;
+}
+
+.margin-xl {
+  margin: 68px;
+}
+
+.fw-500 {
+  font-weight: 400;
+}
+
+.fw-501 {
   font-weight: 500;
-  line-height: 20px; /* 142.857% */
-  letter-spacing: 0.07px;
-  border-radius: 20px;
-  background-color: #92929d;
-  margin-right: 10px;
 }
 
-.badge-completed {
-  background-color: purple;
+.fw-502 {
+  font-weight: 600;
 }
 
-.badge-ended {
-  background-color: #f44336;
-}
-
-.badge-active {
-  background-color: #4caf50;
+.fw-503 {
+  font-weight: 700;
 }
