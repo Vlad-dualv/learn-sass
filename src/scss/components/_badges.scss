@@ -1,80 +1,74 @@
-@mixin frame_size($width, $height: $width) {
-  width: $width;
-  height: $height;
-}
+/*
+@mixin avatar($size, $circle: false) {
+  width: $size;
+  height: $size;
 
-.avatar {
-  @include frame-size(150px);
-  border-radius: 50%;
-  @extend %size;
-}
-
-.icon {
-  @include frame-size(50px);
-  @extend %size;
-}
-
-@mixin position(
-  $layer-index,
-  $display,
-  $position-x: 50%,
-  $position-y: $position-x,
-  $offset-x: $position-x,
-  $offset-y: $position-x
-) {
-  position: $position-type;
-  top: $position-y;
-  left: $position-x;
-  transform: translate($offset-x * -1, $offset-y * -1);
-  z-index: $layer-index;
-  display: $display;
-}
-
-.decoration {
-  @include position($layer-index: 100, block, $offset-y: 70%);
-}
-
-@mixin btn-size($args...) {
-  @for $i from 1 through length($args) {
-    #{nth($large, $i)} {
-      $factor: ($i * 4 - 4);
-      padding: (4px + $factor) (8px + $factor);
-      border-radius: (8px + $factor);
-    }
+  @if $circle {
+    border-radius: 50%;
   }
 }
 
-@include btn-size(50px, 50px);
+.square-avatar {
+  @include avatar(100px, $circle: false);
+}
 
-@use "sass: meta";
+.circle-avatar {
+  @include avatar(100px, $circle: true);
+}
 
-@mixin btn-type($types...) {
-  @each $name, $color in meta.keywords($types) {
-    .btn-#{$name} {
-      border: 2px solid $color;
-      color: $color;
-    }
+@mixin fonts($fs, $fw: null, $lh: null, $ls: null, $align: null) {
+  font-size: $fs;
+  font-weight: $fw;
+
+  @if $lh == normal {
+    line-height: normal;
+  } @else if math.unit($lh) == "px" {
+    line-height: calc($lh / $fs);
+  } @else {
+    @error "Invalid line-height unit. Use 'normal' or a pixel value.";
+  }
+
+  line-height: $lh;
+  letter-spacing: $ls;
+  text-align: $align;
+}
+
+.title {
+  @include fonts(20px, $fw: 600, $lh: 28px, $ls: 0.5px, $align: center);
+}
+  */
+
+$sizes: 8, 16, 20;
+
+@each $size in $sizes {
+  .p-#{$size} {
+    padding: #{$size}px;
   }
 }
 
-@include btn-type(
-  $success: lightgreen,
-  $error: light-red,
-  $warning: light-yellow,
-  $info: light-blue
+$spacers: (
+  "sm": 24,
+  "md": 32,
+  "lg": 36,
+  "xl": 68,
 );
 
-@mixin hover {
-  &:not([disabled]):hover {
-    @content;
+@each $key, $value in $spacers {
+  .margin-#{$key} {
+    margin: #{$value}px;
   }
 }
 
-.button {
-  background-color: white;
-  border: 2px solid black;
-  @include hover($state: disabled) {
-    color: white;
-    background-color: blue;
+$base-weight: 400;
+
+@for $i from 0 through 3 {
+  .fw-#{$base-weight+($i + 100)} {
+    font-weight: $base-weight + ($i * 100);
   }
+}
+
+$n: 0;
+
+@while $n < 4 {
+  $n: $n + 1;
 }
